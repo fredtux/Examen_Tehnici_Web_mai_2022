@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>P4</title>
+</head>
+
+<body>
+    <form action="/vocale" method="POST">
+        <input type="text" id="text" value="" />
+        <input type="text" id="nr" value="" />
+        <input type="submit" id="vocaleSubmit" />
+    </form>
+
+    <div id="mesaj"></div>
+
+    <script type="text/javascript">
+        vocaleSubmit.onclick = (e) => {
+            e.preventDefault();
+
+            fetch('vocale', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text: document.getElementById("text").value,
+                    nr: document.getElementById("nr").value
+                })
+            }).then(function(response) {
+                return response.text();
+            }).then(function(res) {
+                res = JSON.parse(res);
+                document.getElementById("mesaj").innerHTML = res.msg;
+            });
+        }
+    </script>
+</body>
+
+</html>

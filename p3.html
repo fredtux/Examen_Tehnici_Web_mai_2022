@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>P3</title>
+</head>
+
+<body>
+    <input type="button" id="1" value="1" />
+    <input type="button" id="2" value="2" />
+    <input type="button" id="3" value="3" />
+    <input type="button" id="4" value="4" />
+    <input type="button" id="5" value="5" />
+
+    <script type="text/javascript">
+        window.onload = () => {
+            let bgColor = localStorage.getItem("bgcolor");
+            if (bgColor) {
+                document.body.style.backgroundColor = bgColor;
+            }
+
+            let firstColor;
+            document.onkeypress = function(e) {
+                if (e.keyCode >= 49 && e.keyCode <= 57) { // Cifre
+                    let btn = document.getElementById(e.keyCode - 48);
+                    if (!btn) return;
+                    let r = Math.floor(Math.random() * 255);
+                    let g = Math.floor(Math.random() * 255);
+                    let b = Math.floor(Math.random() * 255);
+                    btn.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+
+                    if (!firstColor)
+                        firstColor = btn.style.backgroundColor;
+
+                    setTimeout(function() {
+                        btn.remove();
+
+                        if (document.getElementsByTagName("input").length == 0) {
+                            localStorage.setItem("bgcolor", firstColor);
+                        }
+                    }, 3000);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

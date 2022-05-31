@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>P2</title>
+    <style>
+        ul {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+        window.onload = () => {
+            let strings = ["unu1", "doi", "trei", "patru", "cinci", "sase"];
+            let initList = [];
+            let ul = document.createElement("ul");
+            document.body.appendChild(ul);
+
+            for (let i = 0; i < 10; ++i) {
+                let li = document.createElement("li");
+                li.innerHTML = strings[Math.floor(Math.random() * strings.length)];
+                initList.push(li.innerHTML);
+                ul.appendChild(li);
+
+                li.onclick = function(e) {
+                    if (e.target != this) return;
+                    let ih = li.innerHTML;
+                    ih = ih.split("").reverse().join("");
+                    this.innerHTML = ih;
+                }
+            }
+
+            document.body.onclick = function(e) {
+                if (e.target != this) return;
+                e.stopPropagation();
+
+                for (let i = 0; i < ul.children.length; ++i) {
+                    ul.children[i].innerHTML = initList[i];
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

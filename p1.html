@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>P1</title>
+
+    <style>
+        #parinte {
+            height: 150px;
+            width: 50vw;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto auto;
+            grid-template-areas: "four four four" ". one ." "two . three";
+        }
+        
+        #parinte div {
+            border: 2px dotted black;
+            text-align: center;
+        }
+        
+        #parinte:hover {
+            height: 300px;
+            transition: height 3s;
+        }
+        
+        #parinte:hover div:nth-child(4) {
+            border-color: blue;
+            transition: border-color 3s;
+        }
+        
+        #parinte div:nth-child(1) {
+            grid-area: one;
+        }
+        
+        #parinte div:nth-child(2) {
+            grid-area: two;
+        }
+        
+        #parinte div:nth-child(3) {
+            grid-area: three;
+        }
+        
+        #parinte div:nth-child(4) {
+            grid-area: four;
+        }
+        
+        @media screen and (min-width: 200px) and (max-width: 600px) {
+            #parinte {
+                display: block;
+            }
+            #parinte div {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parinte">
+        <div>DIV 1</div>
+        <div>DIV 2</div>
+        <div>DIV 3</div>
+        <div>DIV 4</div>
+    </div>
+</body>
+
+</html>
